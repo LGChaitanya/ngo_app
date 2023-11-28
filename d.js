@@ -24,7 +24,7 @@ const userData = JSON.parse(userDataString);
 
 async function Last() {
     try {
-      const userActivity = await getUserActivityByEmail(userData.email,1);
+      const userActivity = await getUserActivityByEmail(userData.email);
      
       if (userActivity.length > 0) {
         // Display the user activity or perform any action with it
