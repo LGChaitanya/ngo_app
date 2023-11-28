@@ -78,6 +78,10 @@
                 querySnapshot.forEach((doc) => {
                     users.push(doc.data());
                 });
+                users.sort((a, b) => {
+                    // Assuming that date is in the format "YYYY-MM-DD", adjust the comparison logic based on your actual data structure
+                    return new Date(a.date) - new Date(b.date);
+                });
                 addAllItemsToTheTable(users);
             });
         }
