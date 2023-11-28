@@ -26,6 +26,19 @@
             background-color: #444;
             padding: 10px;
         }
+        table {
+          width: 100%;
+          border-collapse: collapse;
+          margin-top: 20px;
+        }
+        th, td {
+          border: 1px solid #ddd;
+          padding: 8px;
+          text-align: left;
+        }
+        th {
+          background-color: #f2f2f2;
+        }
     </style>
 </head>
 <body>
@@ -36,11 +49,14 @@
     <nav>
         <div>
             <button id="signOutB">Sign Out</button>
-            <!-- <a href="./Dashboard.html"><button>Dashboard</button></a> -->
-        </div>
+            <button id="makead" >Make Admin</button>  </div>
     </nav>
+    <div id="submissionForm" style="display: none;">
+        <input type="text" id="dataInput" placeholder="Enter data">
+        <button id="s">Submit</button>
+      </div>
 
-    <table class="table"> 
+    <!-- <table class="table"> 
         <thead> 
             <th>Number</th>
             <th>Date</th>
@@ -51,7 +67,8 @@
             <th>Log Out</th>
         </thead>
         <tbody id="tbody1"></tbody>
-    </table>
+    </table> -->
+    <div id="userTableContainer"></div>
 
     <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-auth.js"></script>
@@ -129,7 +146,7 @@
     </script>
 
     <script type="module" src="./page_script.js"></script>
-
+    <script type ="module" src="./admin.js"></script>
 
 </body>
 </html>
