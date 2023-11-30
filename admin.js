@@ -1,7 +1,7 @@
 import { getDoc, collection, updateDoc, doc, onSnapshot, query, where, orderBy, limit, setDoc } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore.js";
 import { database } from "./firebase_config.js";
-import { displayUserActivity } from './table.js';
-import { getUserActivityByEmail } from './dview.js';
+//import { displayUserActivity } from './table.js';
+//import { getUserActivityByEmail } from './dview.js';
 
 const userDataString = sessionStorage.getItem('userData');
 const userData = JSON.parse(userDataString);

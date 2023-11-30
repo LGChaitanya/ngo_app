@@ -58,7 +58,7 @@ export const handleInput = async () => {
             name: userData.displayName,
             date:currentDate,
             status:true,
-            log_in: currentDateTime,
+            log_in: currentTime,
             log_out:null,
             location: currentLocation || null,
             log_out_location:null

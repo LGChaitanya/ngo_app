@@ -52,18 +52,18 @@
     <nav>
         <div>
             <button id="signOutB">Sign Out</button>
-<<<<<<< HEAD
+
             <button id="makead" >Make Admin</button>  </div>
-=======
+
         </div>
->>>>>>> bc9e5e3 (admin page changed)
+
     </nav>
     <div id="submissionForm" style="display: none;">
         <input type="text" id="dataInput" placeholder="Enter data">
         <button id="s">Submit</button>
       </div>
 
-<<<<<<< HEAD
+
     <!-- <table class="table"> 
         <thead> 
             <th>Number</th>
@@ -77,7 +77,7 @@
         <tbody id="tbody1"></tbody>
     </table> -->
     <div id="userTableContainer"></div>
-=======
+
     <div class="container mt-4">
         <div class="input-group mb-3">
             <input type="text" class="form-control" placeholder="Search by email" id="searchInput">
@@ -99,7 +99,7 @@
             <tbody id="tbody1"></tbody>
         </table>
     </div>
->>>>>>> bc9e5e3 (admin page changed)
+
 
     <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-auth.js"></script>
@@ -146,9 +146,18 @@
                 querySnapshot.forEach((doc) => {
                     users.push(doc.data());
                 });
+        
+                // Sort the users array by date
+                users.sort((a, b) => {
+                    // Assuming that date is in the format "YYYY-MM-DD", adjust the comparison logic based on your actual data structure
+                    return new Date(a.date) - new Date(b.date);
+                });
+        
                 addAllItemsToTheTable(users);
             });
         }
+        
+        
 
         function addAllItemsToTheTable(userList) {
             var stdNo = 0;
@@ -193,10 +202,8 @@
     </script>
 
     <script type="module" src="./page_script.js"></script>
-<<<<<<< HEAD
-    <script type ="module" src="./admin.js"></script>
-=======
->>>>>>> bc9e5e3 (admin page changed)
+
+    <!-- <script type ="module" src="./admin.js"></script> -->
 
 </body>
 
