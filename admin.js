@@ -60,23 +60,23 @@ const makeadmin = (email) => {
 
 
 
-async function vieww() {
-    try {
-      const userQuery = query(collection(database, 'users'), orderBy('log_in','desc'));
+// async function vieww() {
+//     try {
+//       const userQuery = query(collection(database, 'users'), orderBy('log_in','desc'));
  
-      const userActivity = await getUserActivityByEmail(userQuery,userData.email);
+//       const userActivity = await getUserActivityByEmail(userQuery,userData.email);
      
-      if (userActivity.length > 0) {
-        // Display the user activity or perform any action with it
-        console.log(userActivity);
+//       if (userActivity.length > 0) {
+//         // Display the user activity or perform any action with it
+//         console.log(userActivity);
         
-        displayUserActivity(userActivity, userTableContainer);
-      } else {
-        console.log('No matching records found.');
-      }
-    } catch (error) {
-      console.error('Error fetching data:', error);
-    }
-  }
+//         displayUserActivity(userActivity, userTableContainer);
+//       } else {
+//         console.log('No matching records found.');
+//       }
+//     } catch (error) {
+//       console.error('Error fetching data:', error);
+//     }
+//   }
 
-  vieww();
+//   vieww();
