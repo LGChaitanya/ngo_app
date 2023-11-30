@@ -13,7 +13,7 @@ if (userDataString) {
     const uname = document.getElementById('username');
    
         if (username) {
-            uname.textContent = 'Welcome, ' + userData.displayName + '! Email: ' + userData.email ;
+            uname.textContent = 'Welcome, ' + userData.displayName ;
         }
         
     // Now you can use userData.displayName, userData.email, etc. in this file
