@@ -64,19 +64,7 @@
       </div>
 
 
-    <!-- <table class="table"> 
-        <thead> 
-            <th>Number</th>
-            <th>Date</th>
-            <th>Email</th>
-            <th>Latitude</th>
-            <th>Longitude</th>
-            <th>Log In</th>
-            <th>Log Out</th>
-        </thead>
-        <tbody id="tbody1"></tbody>
-    </table> -->
-    <div id="userTableContainer"></div>
+   
 
     <div class="container mt-4">
         <div class="input-group mb-3">
@@ -150,7 +138,7 @@
                 // Sort the users array by date
                 users.sort((a, b) => {
                     // Assuming that date is in the format "YYYY-MM-DD", adjust the comparison logic based on your actual data structure
-                    return new Date(a.date) - new Date(b.date);
+                    return new Date(b.date) - new Date(a.date);
                 });
         
                 addAllItemsToTheTable(users);
@@ -203,7 +191,7 @@
 
     <script type="module" src="./page_script.js"></script>
 
-    <!-- <script type ="module" src="./admin.js"></script> -->
+    <script type ="module" src="./admin.js"></script>
 
 </body>
 
