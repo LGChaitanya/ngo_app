@@ -37,12 +37,43 @@
             text-decoration: underline;
         }
 
-        section form {
-            margin-left: 25%;
-            margin-right: 25%;
+        nav div {
+            display: flex;
+            align-items: center;
+        }
+
+        nav #profileBtn {
+            margin-left: auto; /* Move the "Profile" button to the right */
+        }
+
+        nav button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+            margin-right: 10px;
+        }
+
+        nav button:hover {
+            background-color: #45a049;
+        }
+
+        nav button[disabled] {
+            background-color: #ddd;
+            cursor: not-allowed;
+        }
+
+        section {
+            margin: 20px;
+        }
+
+        form {
             display: flex;
             justify-content: space-evenly;
-            padding: 20px;
+            margin-bottom: 20px;
         }
 
         button {
@@ -53,7 +84,7 @@
             border: none;
             cursor: pointer;
             border-radius: 4px;
-            margin-right: 10px; /* Add margin to create space between buttons */
+            margin-right: 10px;
         }
 
         button:hover {
@@ -61,22 +92,24 @@
         }
 
         button[disabled] {
-            background-color: #ddd; /* Light color for disabled button */
+            background-color: #ddd;
             cursor: not-allowed;
         }
 
         table {
-          width: 100%;
-          border-collapse: collapse;
-          margin-top: 20px;
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
         }
+
         th, td {
-          border: 1px solid #ddd;
-          padding: 8px;
-          text-align: left;
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
         }
+
         th {
-          background-color: #f2f2f2;
+            background-color: #f2f2f2;
         }
     </style>
 </head>
@@ -85,38 +118,27 @@
         <h4><span id="username"></span>!</h4>
     </header>
     <nav>
-        <div>
-            <div>
-                <a id="demo">View</a>
-                <a id="close">CloseTable</a>
-              </div>
-              
+        <div id="check">
+            <a id="demo">View</a>
+            <a id="close">CloseTable</a>
         </div>
-      
-      <div>
-          <button id="signOutB">Sign Out</button>
-          <a href="./profile.html"><button>Profile</button></a>
-      </div>
-  </nav>
+        <div>
+            <a id="signOutB">Sign Out</a>
+            <a id="profileBtn" href="./profile.html">Profile</a>
+        </div>
+    </nav>
     <section>
         <!-- Your user page content goes here -->
         <form action="" id="contactForm">
-           
-        
             <div class="inputBox">
                 <button type="submit" id="Loginbtn" disabled>Login</button>
             </div>
             <div class="inputBox">
-                <button  id="Logoutbtn" disabled>Logout</button>
+                <button id="Logoutbtn" disabled>Logout</button>
             </div>
         </form>
-        
-          
-       
         <div id="userTableContainer"></div>
     </section>
-
-    
 
     <script type="module" src="./firebase_config.js"></script>
     <script type="module" src="./page_script.js"></script>
