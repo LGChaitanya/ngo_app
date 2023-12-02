@@ -41,6 +41,25 @@
         th {
           background-color: #f2f2f2;
         }
+        /* Add this style for the date input */
+.input-group input[type="date"] {
+    border: 1px solid #ccc;
+    height: 38px;
+}
+
+/* Adjust the search input width */
+.input-group input[type="text"] {
+    width: 70%;
+}
+
+/* Add some margin to the search button */
+.input-group-append button {
+    margin-left: 10px;
+}
+
+/* Style for the table */
+
+
     </style>
 </head>
 
@@ -73,6 +92,14 @@
                 <button class="btn btn-outline-secondary" type="button" onclick="searchTable()">Search</button>
             </div>
         </div>
+
+        <!-- Add the correct ID for the fromDateInput -->
+<div class="input-group mb-3">
+    <input type="date" class="form-control" id="fromDateInput">
+    <div class="input-group-append">
+        <button class="btn btn-outline-secondary" type="button" onclick="searchTable()">Search by Date</button>
+    </div>
+</div>
 
         <table class="table">
             <thead>
@@ -109,24 +136,42 @@
         let db = firebase.firestore();
 
         function searchTable() {
-            var input, filter, table, tr, td, i, txtValue;
-            input = document.getElementById("searchInput");
-            filter = input.value.toUpperCase();
-            table = document.getElementById("tbody1");
-            tr = table.getElementsByTagName("tr");
+    var emailInput, fromDateInput, filter, table, tr, td, i, txtValue;
+    emailInput = document.getElementById("searchInput");
+    fromDateInput = document.getElementById("fromDateInput"); // Corrected ID
+    filter = emailInput.value.toUpperCase();
+    var fromDate = fromDateInput.value; // Use fromDate instead of toDate
 
-            for (i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td")[2]; // Change the index to match the column you want to search
-                if (td) {
-                    txtValue = td.textContent || td.innerText;
-                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                        tr[i].style.display = "";
-                    } else {
-                        tr[i].style.display = "none";
-                    }
-                }
+    table = document.getElementById("tbody1");
+    tr = table.getElementsByTagName("tr");
+
+    for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[2]; // Change the index to match the column you want to search
+        tdDate = tr[i].getElementsByTagName("td")[1]; // Assuming the date column is the second column
+        if (td && tdDate) {
+            txtValue = td.textContent || td.innerText;
+            dateValue = tdDate.textContent || tdDate.innerText;
+
+            if (txtValue.toUpperCase().indexOf(filter) > -1 && checkDateRange(dateValue, fromDate)) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
             }
         }
+    }
+}
+
+function checkDateRange(dateValue, fromDate) {
+    if (!fromDate) {
+        return true; // If fromDate is not specified, consider it in the range
+    }
+
+    const currentDate = new Date(dateValue);
+    const fromDateObj = new Date(fromDate);
+
+    return currentDate >= fromDateObj;
+}
+
 
         function getAllData() {
             db.collection("users").get().then((querySnapshot) => {
