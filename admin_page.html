@@ -26,6 +26,19 @@
             background-color: #444;
             padding: 10px;
         }
+        table {
+          width: 100%;
+          border-collapse: collapse;
+          margin-top: 20px;
+        }
+        th, td {
+          border: 1px solid #ddd;
+          padding: 8px;
+          text-align: left;
+        }
+        th {
+          background-color: #f2f2f2;
+        }
     </style>
 </head>
 <body>
@@ -36,11 +49,18 @@
     <nav>
         <div>
             <button id="signOutB">Sign Out</button>
-            <!-- <a href="./Dashboard.html"><button>Dashboard</button></a> -->
+<<<<<<< HEAD
+            <button id="makead" >Make Admin</button>  </div>
+=======
         </div>
     </nav>
+    <div id="submissionForm" style="display: none;">
+        <input type="text" id="dataInput" placeholder="Enter data">
+        <button id="s">Submit</button>
+      </div>
 
-    <table class="table"> 
+<<<<<<< HEAD
+    <!-- <table class="table"> 
         <thead> 
             <th>Number</th>
             <th>Date</th>
@@ -51,12 +71,36 @@
             <th>Log Out</th>
         </thead>
         <tbody id="tbody1"></tbody>
-    </table>
+    </table> -->
+    <div id="userTableContainer"></div>
+=======
+    <div class="container mt-4">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Search by email" id="searchInput">
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="button" onclick="searchTable()">Search</button>
+            </div>
+        </div>
+
+        <table class="table">
+            <thead>
+                <th>Number</th>
+                <th>Date</th>
+                <th>Email</th>
+                <th>Latitude</th>
+                <th>Longitude</th>
+                <th>Log In</th>
+                <th>Log Out</th>
+            </thead>
+            <tbody id="tbody1"></tbody>
+        </table>
+    </div>
+>>>>>>> bc9e5e3 (admin page changed)
 
     <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-firestore.js"></script>
-   
+
     <script id="MainScript">
         const firebaseConfig = {
             apiKey: "AIzaSyCUZ1mxHBXoFqCYZ-LV9q2cSEBBGGa_Od8",
@@ -71,6 +115,26 @@
           
         firebase.initializeApp(firebaseConfig);
         let db = firebase.firestore();
+
+        function searchTable() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("searchInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("tbody1");
+            tr = table.getElementsByTagName("tr");
+
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[2]; // Change the index to match the column you want to search
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
 
         function getAllData() {
             db.collection("users").get().then((querySnapshot) => {
@@ -129,7 +193,10 @@
     </script>
 
     <script type="module" src="./page_script.js"></script>
-
+<<<<<<< HEAD
+    <script type ="module" src="./admin.js"></script>
+=======
+>>>>>>> bc9e5e3 (admin page changed)
 
 </body>
 </html>
