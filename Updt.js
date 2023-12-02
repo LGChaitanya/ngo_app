@@ -10,7 +10,9 @@ const logoutTime = new Date().toLocaleTimeString();
 const location= await getlocation();
 export async function onViewButtonClick() {
   try {
-    const userActivity = await getUserActivityByEmail(userData.email,1);
+    const userQuery = query(collection(database, 'users'), where('email', '==', userData.email),orderBy('log_in','desc'),limit(1));
+           
+    const userActivity = await getUserActivityByEmail(userQuery,userData.email);
     const record=userActivity[0];
     console.log(userActivity);
     if (userActivity.length > 0) {

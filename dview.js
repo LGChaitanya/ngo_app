@@ -5,9 +5,8 @@ import { database } from "./firebase_config.js";
 const userDataString = sessionStorage.getItem('userData');
 const userData = JSON.parse(userDataString);
 
-export const getUserActivityByEmail = async (email,n=Infinity) => {
-  const userQuery = query(collection(database, 'users'), where('email', '==', email),orderBy('log_in','desc'),limit(n));
-  const querySnapshot = await getDocs(userQuery);
+export const getUserActivityByEmail = async (userQuery,email,n=Infinity) => {
+   const querySnapshot = await getDocs(userQuery);
 
   const userActivity = [];
 

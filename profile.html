@@ -4,14 +4,80 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Profile</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+h4 {
+    text-align: center;
+    color: #333;
+}
+
+#user {
+    color: #007BFF; /* Blue color for user */
+}
+
+form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 80%; /* Set a fixed width for the form */
+    max-width: 400px; /* Maximum width to ensure it looks good on larger screens */
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #555;
+}
+
+input, select, button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+button {
+    background-color: #007BFF;
+    color: #fff;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Media query for small screens (mobile) */
+@media only screen and (max-width: 600px) {
+    body {
+        margin-top: 0;
+        /* width: 90%;  */
+        /* Adjust width for better readability on smaller screens */
+    }
+}
+    </style>
 </head>
 <body>
-    <h4><span id="user"></span></h4>
+    
+    <div>
+        <h4><span id="user"></span></h4>
     <p>Teacher ID:</p>
     <div>
         <p id></p>
     </div>
-    <div>
          <form action="" id="profileForm">
             <div>
                 <label for="name" class="label">Username:</label>
