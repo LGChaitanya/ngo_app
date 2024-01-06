@@ -1,7 +1,7 @@
 import { getDoc, collection, updateDoc, doc, onSnapshot, query, where, orderBy, limit, setDoc } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore.js";
 import { database } from "./firebase_config.js";
-//import { displayUserActivity } from './table.js';
-//import { getUserActivityByEmail } from './dview.js';
+import { displayUserActivity } from './table.js';
+import { getUserActivityByEmail } from './dview.js';
 
 const userDataString = sessionStorage.getItem('userData');
 const userData = JSON.parse(userDataString);
@@ -60,23 +60,54 @@ const makeadmin = (email) => {
 
 
 
-// async function vieww() {
-//     try {
-//       const userQuery = query(collection(database, 'users'), orderBy('log_in','desc'));
+async function vieww() {
+    try {
+      const userQuery = query(collection(database, 'users'),where('email', '==', searchemail.value), orderBy('log_in','desc'));
  
-//       const userActivity = await getUserActivityByEmail(userQuery,userData.email);
+      const userActivity = await getUserActivityByEmail(userQuery);
      
-//       if (userActivity.length > 0) {
-//         // Display the user activity or perform any action with it
-//         console.log(userActivity);
+      if (userActivity.length > 0) {
+        // Display the user activity or perform any action with it
+        console.log(userActivity);
         
-//         displayUserActivity(userActivity, userTableContainer);
-//       } else {
-//         console.log('No matching records found.');
-//       }
-//     } catch (error) {
-//       console.error('Error fetching data:', error);
-//     }
-//   }
+        displayUserActivity(userActivity, userTableContainer);
+      } else {
+        alert('No matching records found.');
+      }
+    } catch (error) {
+      alert('Error fetching data:', error);
+    }
+  }
 
-//   vieww();
+
+  // async function viewdate() {
+  //   try {
+  //     const userQuery = query(collection(database, 'users'),where('email', '==', searchemail.value), where('log_in', '==', searchdate.value), orderBy('log_in','desc'));
+  
+  //     const userActivity = await getUserActivityByEmail(userQuery);
+     
+  //     if (userActivity.length > 0) {
+  //       // Display the user activity or perform any action with it
+  //       console.log(userActivity);
+        
+  //       displayUserActivity(userActivity, userTableContainer);
+  //     } else {
+  //       alert('No matching records found.');
+  //     }
+  //   } catch (error) {
+  //     alert('Error fetching data:', error);
+  //   }
+  // }
+
+
+  const searchemail = document.getElementById("searchInput");
+
+  // const searchdate = document.getElementById("fromDateInput");
+  const out = document.getElementById("search1");
+
+
+// const out1 = document.getElementById("search");
+// out1.addEventListener('click', viewdate);
+out.addEventListener('click', vieww);
+
+const userTableContainer = document.getElementById('userTableContainer');

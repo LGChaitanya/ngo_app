@@ -51,16 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Update the existing profile with new data
             newupt(name,kalikakendra,quantity,cluster,profileId);
         
-            // After updating, re-fetch the data and display it in the form
-            // const updatedQuerySnapshot = await getDocs(userQuery);
-            // updatedQuerySnapshot.forEach((updatedDoc) => {
-            //     const updatedUserData = updatedDoc.data();
-            //     // Fill the form with the updated data
-            //     name.value = updatedUserData.name;
-            //     kalikakendra.value = updatedUserData.kalikakendra;
-            //     cluster.value = updatedUserData.cluster;
-            //     quantity.value = updatedUserData.No_of_Students;
-            // });
+            
         });
         // If the user does not have a profile, add a new profile
         if (querySnapshot.empty) {
@@ -87,59 +78,6 @@ document.addEventListener('DOMContentLoaded', () => {
   
 
   
-//   const userActivity = [];
-//   const fetch= async (email) => {
-//     const userQuery = query(collection(database, 'Profile'), where('email', '==', email));
-//     const querySnapshot = await getDocs(userQuery);
-  
-//   if(userActivity.email)
-//     querySnapshot.forEach((doc) => {
-//       const userData = doc.data();
-//       userActivity.push({
-//         email:userData.email,
-//         name:name,
-//         kalikakendra:kalikakendra,
-//         cluster:cluster,
-//         No_of_Students:quantity
-//       });
-//     });
-    
-//     console.log(userActivity);
-
-
-//   };
-//   fetch();
-
-
-//   async function fetchAndFillForm() {
-    
-//     const userQuery = query(collection(database, 'Profile'), where('email', '==', user.email));
-//     const querySnapshot = await getDocs(userQuery);
-//     if(userActivity.email)
-//     querySnapshot.forEach((doc) => {
-//       const userData = doc.data();
-//       userActivity.push({
-//         email:userData.email,
-//         name:name,
-//         kalikakendra:kalikakendra,
-//         cluster:cluster,
-//         No_of_Students:quantity
-//       });
-//     });
-//     const profileData = userActivity;
-  
-//     console.log(userActivity);
-
-//     document.getElementById('name').value=profileData.name;
-//     document.getElementById('kalikakendra').value=profileData.kalikakendra;
-//     document.getElementById('cluster').value=profileData.cluster;
-//     document.getElementById('quantity').value=profileData.quantity;
-//   }
-//   fetchAndFillForm();
-
-// Assuming that 'userData' contains the user's information, including the email
-
-// Import necessary Firestore functions
 
 document.addEventListener('DOMContentLoaded', async () => {
     // Fetch user's profile data from Firestore based on their email

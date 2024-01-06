@@ -12,7 +12,13 @@ import {collection , addDoc,getDocs, updateDoc, doc } from "https://www.gstatic.
 export const collectionRef=collection(database,'users');
 const userDataString = sessionStorage.getItem('userData');
 const userData = JSON.parse(userDataString);
-const currentDate = new Date().toDateString();
+const currentDate = new Date();
+
+
+const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
+const formattedDate = currentDate.toLocaleDateString('en-IN', options);
+
+console.log(formattedDate); 
 // const handle = document.getElementById("Login");
 
 
@@ -56,7 +62,7 @@ export const handleInput = async () => {
         addDoc(collectionRef, {
             email: userData.email,
             name: userData.displayName,
-            date:currentDate,
+            date:formattedDate,
             status:true,
             log_in: currentDateTime,
             log_out:null,
