@@ -7,17 +7,20 @@ import { onViewButtonClick } from "./Updt.js";
 import { status,date } from "./StateChanged.js";
 
 const currentDate = new Date();
+const options = { weekday: 'short' ,month: 'short', day: '2-digit', year: 'numeric' };
+let formattedDate = currentDate.toLocaleDateString('en-US', options);
+formattedDate = formattedDate.replace(/,/g, '');
 const userDataString = sessionStorage.getItem('userData');
 const userData = JSON.parse(userDataString);
-// console.log(currentDate);
+console.log(currentDate);
 // console.log(date);
-// console.log(date==currentDate);
-
+console.log(date==formattedDate );
+console.log(formattedDate );
 async function handleLogin() {
     try {
         // status=true;
-        console.log(date==currentDate);
-        if(date==currentDate){
+        console.log(date==formattedDate );
+        if(date==formattedDate){
             alert('can log in once in a day');
             document.getElementById("Loginbtn").disabled = true;
             document.getElementById("Logoutbtn").disabled = true;
