@@ -6,18 +6,23 @@ import { getUserActivityByEmail } from "./dview.js";
 import { onViewButtonClick } from "./Updt.js";
 import { status,date } from "./StateChanged.js";
 
-const currentDate = new Date().toDateString();
+const currentDate = new Date();
 const userDataString = sessionStorage.getItem('userData');
 const userData = JSON.parse(userDataString);
+// console.log(currentDate);
+// console.log(date);
+// console.log(date==currentDate);
 
 async function handleLogin() {
     try {
         // status=true;
+        console.log(date==currentDate);
         if(date==currentDate){
             alert('can log in once in a day');
             document.getElementById("Loginbtn").disabled = true;
             document.getElementById("Logoutbtn").disabled = true;
-        }else{
+        }
+        else{
         loginBtn.disabled = true;
         out.disabled = false;
         handleInput();

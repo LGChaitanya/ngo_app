@@ -33,11 +33,15 @@ export function displayUserActivity(userActivity, container) {
 
       // Check if the user object has the specified key
       if (header.toLowerCase() === 'log in') {
-        cell.appendChild(document.createTextNode(user['logIn'] || ''));
-      } else if (header.toLowerCase() === 'log out') {
+        const timestamp = user['logIn'];
+      const formattedDate = formatFirestoreTimestamp(timestamp);
+      cell.appendChild(document.createTextNode(formattedDate || ''));
+      }
+       else if (header.toLowerCase() === 'log out') {
         const logOutValue = user['logOut'];
         cell.appendChild(document.createTextNode(logOutValue !== null ? logOutValue : 'Log Out is null or undefined'));
-      } else if (header.toLowerCase() === 'log in location') {
+      }
+       else if (header.toLowerCase() === 'log in location') {
         const logInLocation = user['logInLocation'];
         const latitude = logInLocation ? logInLocation.latitude : '';
         const longitude = logInLocation ? logInLocation.longitude : '';
@@ -61,4 +65,14 @@ export function displayUserActivity(userActivity, container) {
 
   // Append the table to the container in your HTML
   container.appendChild(table);
+}
+
+
+function formatFirestoreTimestamp(timestamp) {
+  if (!timestamp || !timestamp.seconds) {
+    return '';
+  }
+
+  const date = new Date(timestamp.seconds * 1000 + timestamp.nanoseconds / 1000000);
+  return date.toLocaleString();
 }

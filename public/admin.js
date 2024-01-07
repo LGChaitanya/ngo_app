@@ -63,13 +63,10 @@ const makeadmin = (email) => {
 async function vieww() {
     try {
       const userQuery = query(collection(database, 'users'),where('email', '==', searchemail.value), orderBy('log_in','desc'));
- 
       const userActivity = await getUserActivityByEmail(userQuery);
-     
       if (userActivity.length > 0) {
         // Display the user activity or perform any action with it
         console.log(userActivity);
-        
         displayUserActivity(userActivity, userTableContainer);
       } else {
         alert('No matching records found.');
@@ -80,34 +77,48 @@ async function vieww() {
   }
 
 
-  // async function viewdate() {
-  //   try {
-  //     const userQuery = query(collection(database, 'users'),where('email', '==', searchemail.value), where('log_in', '==', searchdate.value), orderBy('log_in','desc'));
-  
-  //     const userActivity = await getUserActivityByEmail(userQuery);
-     
-  //     if (userActivity.length > 0) {
-  //       // Display the user activity or perform any action with it
-  //       console.log(userActivity);
-        
-  //       displayUserActivity(userActivity, userTableContainer);
-  //     } else {
-  //       alert('No matching records found.');
-  //     }
-  //   } catch (error) {
-  //     alert('Error fetching data:', error);
-  //   }
-  // }
+  async function viewdate() {
+    try {
+        const userEmail = searchemail.value;
+        const fromDate = document.getElementById("fromDateInput").value;
+        console.log(userEmail);
+        let fromDate1=new Date(fromDate);
+        console.log(fromDate1);
+        if (!userEmail || !fromDate) {
+            alert('Please enter email and select a "from" date for searching.');
+            return;
+        }
 
+        // Convert the selected date string into a JavaScript Date object
+        
+        
+          const userQuery = query(
+            collection(database, 'users'),
+            where('email', '==', userEmail),
+            where('log_in', '>', fromDate1),
+            orderBy('log_in', 'desc')
+          );
+
+        const userActivity = await getUserActivityByEmail(userQuery);
+        
+        displayUserActivity(userActivity, userTableContainer);
+    } catch (error) {
+        alert('Error fetching data:', error);
+    }
+}
+
+function parseDate(dateString) {
+  const parts = dateString.split('-');
+  return new Date(parts[0], parts[1] - 1, parts[2]); // months are 0-based
+}
 
   const searchemail = document.getElementById("searchInput");
 
-  // const searchdate = document.getElementById("fromDateInput");
+  const searchdate = document.getElementById("fromDateInput");
   const out = document.getElementById("search1");
 
-
-// const out1 = document.getElementById("search");
-// out1.addEventListener('click', viewdate);
+const out1 = document.getElementById("search");
+out1.addEventListener('click', viewdate);
 out.addEventListener('click', vieww);
 
 const userTableContainer = document.getElementById('userTableContainer');

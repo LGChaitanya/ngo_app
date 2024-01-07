@@ -13,17 +13,18 @@ export const collectionRef=collection(database,'users');
 const userDataString = sessionStorage.getItem('userData');
 const userData = JSON.parse(userDataString);
 const currentDate = new Date();
+// console.log(currentDate);
+// const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
+// const formattedDate = currentDate.toLocaleDateString('en-IN', options);
 
+// console.log(formattedDate); 
 
-const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
-const formattedDate = currentDate.toLocaleDateString('en-IN', options);
+const options = { weekday: 'short' ,month: 'short', day: '2-digit', year: 'numeric' };
+let formattedDate = currentDate.toLocaleDateString('en-US', options);
+formattedDate = formattedDate.replace(/,/g, '');
 
-console.log(formattedDate); 
+// console.log(formattedDate);
 // const handle = document.getElementById("Login");
-
-
-const currentDateTime = new Date().toLocaleString();
-
 
 export const getlocation=async()=>{
     return new Promise((resolve, reject) => {
@@ -64,7 +65,7 @@ export const handleInput = async () => {
             name: userData.displayName,
             date:formattedDate,
             status:true,
-            log_in: currentDateTime,
+            log_in: currentDate,
             log_out:null,
             location: currentLocation || null,
             log_out_location:null
