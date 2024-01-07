@@ -31,6 +31,8 @@ if (userDataString) {
       const kalikakendra = document.getElementById('kalikakendra');
       const cluster = document.getElementById('cluster');
       const quantity= document.getElementById('quantity');
+      const Tid= document.getElementById('tid');
+      
      
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -49,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const profileId = doc.id;
             console.log(profileId);
             // Update the existing profile with new data
-            newupt(name,kalikakendra,quantity,cluster,profileId);
+            newupt(name,kalikakendra,quantity,cluster,profileId,Tid);
         
             
         });
@@ -60,7 +62,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 name: name.value,
                 kalikakendra: kalikakendra.value,
                 cluster: cluster.value,
-                No_of_Students: quantity.value
+                No_of_Students: quantity.value,
+                Teacher_id:Tid.value
             });
 
             alert('Data Added');
@@ -91,6 +94,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         kalikakendra.value = userDataq.kalikakendra;
         cluster.value = userDataq.cluster;
         quantity.value = userDataq.No_of_Students;
+        Tid.value=userDataq. Teacher_id;
     });
 });
 

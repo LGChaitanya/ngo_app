@@ -74,5 +74,10 @@ function formatFirestoreTimestamp(timestamp) {
   }
 
   const date = new Date(timestamp.seconds * 1000 + timestamp.nanoseconds / 1000000);
-  return date.toLocaleString();
+
+  // Set the timezone manually to IST
+  const options = { timeZone: 'Asia/Kolkata', timeZoneName: 'short' };
+  
+  // Use toLocaleString with options to format the date as "Sun Jan 07 2024 16:46:43 IST"
+  return date.toLocaleString('en-IN', options);
 }
