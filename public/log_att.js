@@ -4,27 +4,15 @@ import {getFirestore} from "https://www.gstatic.com/firebasejs/10.6.0/firebase-f
 
 import {app,database} from "./firebase_config.js";
 import {collection , addDoc,getDocs, updateDoc, doc } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore.js";
-// import { status } from "./StateChanged.js";
-
-// import{displayDataFunction} from "./display.js";
-
 
 export const collectionRef=collection(database,'users');
 const userDataString = sessionStorage.getItem('userData');
 const userData = JSON.parse(userDataString);
 const currentDate = new Date();
-// console.log(currentDate);
-// const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
-// const formattedDate = currentDate.toLocaleDateString('en-IN', options);
-
-// console.log(formattedDate); 
-
 const options = { weekday: 'short' ,month: 'short', day: '2-digit', year: 'numeric' };
 let formattedDate = currentDate.toLocaleDateString('en-US', options);
 formattedDate = formattedDate.replace(/,/g, '');
 
-// console.log(formattedDate);
-// const handle = document.getElementById("Login");
 
 export const getlocation=async()=>{
     return new Promise((resolve, reject) => {
