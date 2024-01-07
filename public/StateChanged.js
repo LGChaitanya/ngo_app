@@ -28,6 +28,11 @@ var record=null;
                 console.log(3);
                 // Check if the stored date is the same as the current date
                 const currentDate = new Date().toDateString();
+                // console.log(date);
+                // console.log(date.toLocaleDateString());
+                // console.log(currentDate);
+                // console.log(status);
+                // console.log(date == currentDate );
                 if (date == currentDate && status) {
                     console.log(9);
                     status=true;
