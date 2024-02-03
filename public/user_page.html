@@ -111,6 +111,24 @@
         th {
             background-color: #f2f2f2;
         }
+
+        #stud{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    }
+
+/* Style for form labels */
+.label {
+    margin-bottom: 10px;
+}
+.input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 200px;
+    margin-bottom: 10px;
+}
     </style>
 </head>
 <body>
@@ -137,6 +155,14 @@
                 <button id="Logoutbtn" disabled>Logout</button>
             </div>
         </form>
+            <div id="stud">
+                
+                <label for="no_of_students" class="label">No of Student Present:</label>
+                <input type="number" id="no_of_students" name="no_of_students" class="input" required>
+                <button type="button" id="submitAttendance">Submit</button>
+            
+            </div>
+<br><br><br>            
         <div id="userTableContainer"></div>
     </section>
 
@@ -145,6 +171,6 @@
     <script type="module" src="./log_att.js"></script>
     <script type="module" src="./log.js"></script>
     <script type="module" src="./d.js"></script>
-    <!-- <script type="module" src="./buttons.js"></script> -->
+    <!-- <script type="module" src="./updatedoc.js"></script> -->
 </body>
 </html>

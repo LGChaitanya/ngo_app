@@ -1,9 +1,8 @@
 import {doc,updateDoc,collection }  from "https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore.js";
 import { database } from "./firebase_config.js";
 const collectionP=collection(database,'Profile');
- export async function newupt(name,kalikakendra,quantity,cluster,profileId,tid){
+ export async function newupt(kalikakendra,quantity,cluster,profileId,tid){
     await updateDoc(doc(collectionP, profileId), {
-        name: name.value,
         kalikakendra: kalikakendra.value,
         cluster: cluster.value,
         No_of_Students: quantity.value,
@@ -12,4 +11,8 @@ const collectionP=collection(database,'Profile');
     
     alert('Data Updated');
 }
+
+
+const userDataString = sessionStorage.getItem('userData');
+const userData = JSON.parse(userDataString);
 

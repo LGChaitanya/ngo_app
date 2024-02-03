@@ -27,7 +27,6 @@ if (userDataString) {
 
 
 
-      const name = document.getElementById('name');
       const kalikakendra = document.getElementById('kalikakendra');
       const cluster = document.getElementById('cluster');
       const quantity= document.getElementById('quantity');
@@ -51,15 +50,16 @@ document.addEventListener('DOMContentLoaded', () => {
             const profileId = doc.id;
             console.log(profileId);
             // Update the existing profile with new data
-            newupt(name,kalikakendra,quantity,cluster,profileId,Tid);
+            newupt(kalikakendra,quantity,cluster,profileId,Tid);
         
             
         });
+        console.log('5');
         // If the user does not have a profile, add a new profile
         if (querySnapshot.empty) {
+            console.log('6');
              addDoc(collectionP, {
                 email: userData.email,
-                name: name.value,
                 kalikakendra: kalikakendra.value,
                 cluster: cluster.value,
                 No_of_Students: quantity.value,
@@ -90,7 +90,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     querySnapshot.forEach((doc) => {
         const userDataq = doc.data();
         // Fill the form with the fetched data
-        name.value = userDataq.name;
         kalikakendra.value = userDataq.kalikakendra;
         cluster.value = userDataq.cluster;
         quantity.value = userDataq.No_of_Students;

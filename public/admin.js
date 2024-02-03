@@ -15,15 +15,18 @@ function openForm() {
 }
 
 const sub = document.getElementById('s');
-sub.addEventListener('click', submitData);
+sub.addEventListener('click', () => submitRole("admin"));
 
-function submitData() {
+const su = document.getElementById('su');
+su.addEventListener('click', () => submitRole("superUser"));
+
+function submitRole(role) {
   // Get the data from the input field
   const inputData = document.getElementById('dataInput').value;
 
   // Validate the input (you can add more robust validation as needed)
   if (inputData.trim() === "") {
-    alert("Please enter data before submitting.");
+    alert("Please enter email before submitting.");
     return;
   }
 
@@ -34,20 +37,20 @@ function submitData() {
   document.getElementById('submissionForm').style.display = 'none';
 
   // Optionally, provide feedback to the user (e.g., show a success message)
-  console.log("Data submitted successfully!");
-  makeadmin(inputData);
+  console.log("successfull!");
+  makeRole(inputData, role);
 }
 
-const makeadmin = (email) => {
+function makeRole(email, role) {
   try {
     const data = {
-      role: "admin"
+      role: role
       // Add other fields as needed
     };
 
     setDoc(doc(database, "Role", email), data)
       .then(() => {
-        alert("Document successfully added!");
+        alert(email + " is now a " + role + ".");
       })
       .catch((error) => {
         console.error("Error adding document: ", error);

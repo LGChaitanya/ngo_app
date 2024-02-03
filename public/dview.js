@@ -20,7 +20,9 @@ export const getUserActivityByEmail = async (userQuery,email,n=Infinity) => {
       logIn: userData.log_in,
       logOut: userData.log_out,
       logInLocation: userData.location,
-      logOutLocation: userData.log_out_location
+      logOutLocation: userData.log_out_location,
+      No_of_student:userData.no_of_students
+
     });
   });
   return userActivity;
