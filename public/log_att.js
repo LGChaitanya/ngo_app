@@ -56,7 +56,8 @@ export const handleInput = async () => {
             log_in: currentDate,
             log_out:null,
             location: currentLocation || null,
-            log_out_location:null
+            log_out_location:null,
+            no_of_students:null
         }).then(() => {
             
             alert('Attendence Updated');

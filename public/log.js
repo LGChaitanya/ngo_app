@@ -78,3 +78,31 @@ if(status){
 }
 }
 // check();
+
+
+
+
+
+document.getElementById("submitAttendance").addEventListener('click', async () => {
+    try {
+
+        const attendanceInput = document.getElementById('no_of_students').value;
+        if (!attendanceInput) {
+            alert('Please enter the number of students present.');
+            return;
+        }
+
+        const userQuery = query(collection(database, 'users'), where('email', '==', userData.email), orderBy('log_in', 'desc'), limit(1));
+        const userActivity = await getUserActivityByEmail(userQuery, userData.email);
+        if (userActivity.length > 0) {
+            const record = userActivity[0];
+            const docToUpdate = doc(database, 'users', record.id);
+            await updateDoc(docToUpdate, { no_of_students: attendanceInput });
+            alert('Attendance submitted successfully.');
+        } else {
+            console.log('No matching records found.');
+        }
+    } catch (error) {
+        console.error('Error submitting attendance:', error);
+    }
+});
