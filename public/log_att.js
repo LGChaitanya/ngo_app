@@ -59,7 +59,8 @@ export const handleInput = async () => {
             log_out_location:null
         }).then(() => {
             
-            alert('Data Added');
+            alert('Attendence Updated');
+            window.location.href = './index.html';
         }).catch((err) => {
             console.error('Error adding data:', err);
             alert('Failed to add data. Check the console for details.');

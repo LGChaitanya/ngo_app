@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
             sessionStorage.setItem('userData', JSON.stringify(userData));
             // console.log(user);
             // Redirect to user page
-             checkUserRole(userData.uid);
+             checkUserRole(userData.uid,userData.email);
             
         })
         .catch((error) => {
@@ -44,13 +44,26 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
-async function checkUserRole(uid) {
+async function checkUserRole(uid,email) {
   // Assume you have a Firestore database with a 'users' collection
   const userDocRef = doc(database, 'Role', uid);
+  const userDocRef1 = doc(database, 'Role', email);
   const userDocSnapshot = await getDoc(userDocRef);
-
+  const userDocSnapshot1 = await getDoc(userDocRef1);
   if (userDocSnapshot.exists()) {
     const userData = userDocSnapshot.data();
+    const userRole = userData.role;
+
+    if (userRole === 'admin') {
+      // Redirect to admin view
+      window.location.href = 'admin_page.html';
+    } else {
+      // Redirect to user view
+      window.location.href = 'user_page.html';
+    }
+  }
+   else if (userDocSnapshot1.exists()) {
+    const userData = userDocSnapshot1.data();
     const userRole = userData.role;
 
     if (userRole === 'admin') {

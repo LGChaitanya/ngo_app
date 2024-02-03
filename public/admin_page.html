@@ -106,6 +106,7 @@
     <header>
         <h1>Admin Page</h1>
         <h4><span id="username"></span>!</h4>
+        <!-- <button id="exportToExcelButton" class="btn btn-outline-secondary">Export to Excel</button> -->
     </header>
     <nav>
         <div>
@@ -142,90 +143,9 @@
 
     <div id="userTableContainer"></div>
     </div>
-
-
-    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-firestore.js"></script>
-
-    <script id="MainScript">
-        const firebaseConfig = {
-            apiKey: "AIzaSyCUZ1mxHBXoFqCYZ-LV9q2cSEBBGGa_Od8",
-            authDomain: "demoapp-7d004.firebaseapp.com",
-            databaseURL: "https://demoapp-7d004-default-rtdb.firebaseio.com",
-            projectId: "demoapp-7d004",
-            storageBucket: "demoapp-7d004.appspot.com",
-            messagingSenderId: "559486024644",
-            appId: "1:559486024644:web:985262b8b7330e7ea38291",
-            measurementId: "G-1DST9H93L4"
-        };
-
-        firebase.initializeApp(firebaseConfig);
-        let db = firebase.firestore();
-
-//         function searchTable() {
-//     var emailInput, fromDateInput, filter, table, tr, td, i, txtValue;
-//     emailInput = document.getElementById("searchInput");
-//     fromDateInput = document.getElementById("fromDateInput"); // Corrected ID
-//     filter = emailInput.value.toUpperCase();
-//     var fromDate = fromDateInput.value; // Use fromDate instead of toDate
-
-//     table = document.getElementById("tbody1");
-//     tr = table.getElementsByTagName("tr");
-
-//     for (i = 0; i < tr.length; i++) {
-//         td = tr[i].getElementsByTagName("td")[2]; // Change the index to match the column you want to search
-//         tdDate = tr[i].getElementsByTagName("td")[1]; // Assuming the date column is the second column
-//         if (td && tdDate) {
-//             txtValue = td.textContent || td.innerText;
-//             dateValue = tdDate.textContent || tdDate.innerText;
-
-//             if (txtValue.toUpperCase().indexOf(filter) > -1 && checkDateRange(dateValue, fromDate)) {
-//                 tr[i].style.display = "";
-//             } else {
-//                 tr[i].style.display = "none";
-//             }
-//         }
-//     }
-// }
-
-function checkDateRange(dateValue, fromDate) {
-    if (!fromDate) {
-        return true; // If fromDate is not specified, consider it in the range
-    }
-
-    const currentDate = new Date(dateValue);
-    const fromDateObj = new Date(fromDate);
-
-    return currentDate >= fromDateObj;
-}
-
-
-        function getAllData() {
-            db.collection("users").get().then((querySnapshot) => {
-                var users = [];
-                querySnapshot.forEach((doc) => {
-                    users.push(doc.data());
-                });
-        
-                // Sort the users array by date
-                users.sort((a, b) => {
-                    // Assuming that date is in the format "YYYY-MM-DD", adjust the comparison logic based on your actual data structure
-                    return new Date(b.date) - new Date(a.date);
-                });
-        
-                addAllItemsToTheTable(users);
-            });
-        }
-        
-        
-
-    </script>
-
     <script type="module" src="./page_script.js"></script>
-
     <script type ="module" src="./admin.js"></script>
-
+    <script type="module" src="./export.js"></script>
 </body>
 
 </html>
