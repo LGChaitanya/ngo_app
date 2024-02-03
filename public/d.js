@@ -2,13 +2,20 @@ import { getDocs, collection, updateDoc, doc ,onSnapshot,query,where,orderBy,lim
 import { database } from "./firebase_config.js";
 import { getUserActivityByEmail } from './dview.js';
 import { displayUserActivity } from './table.js';
+import { userRole } from "./StateChanged.js";
 
 const userDataString = sessionStorage.getItem('userData');
 const userData = JSON.parse(userDataString);
 async function Last() {
     try {
-      const userQuery = query(collection(database, 'users'), where('email', '==', userData.email),orderBy('log_in','desc'),limit(1));
+      var userQuery = query(collection(database, 'users'), where('email', '==', userData.email),orderBy('log_in','desc'),limit(1));
+      
+      if(userRole === 'superUser'){
+        var userQuery = query(collection(database, 'users'), where('email', '==', userData.email),orderBy('log_in','desc'),limit(5));
  
+      }
+     
+      
       const userActivity = await getUserActivityByEmail(userQuery,userData.email);
      
       if (userActivity.length > 0) {

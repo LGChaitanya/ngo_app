@@ -1,10 +1,10 @@
 
-import { getDocs, collection, updateDoc, doc ,onSnapshot,query,where,orderBy,limit } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore.js";
+import { getDocs,getDoc, collection, updateDoc, doc ,onSnapshot,query,where,orderBy,limit } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore.js";
 import { database } from "./firebase_config.js";
 import {handleInput} from "./log_att.js";
 import { getUserActivityByEmail } from "./dview.js";
 import { onViewButtonClick } from "./Updt.js";
-import { status,date } from "./StateChanged.js";
+import { userRole,status,date } from "./StateChanged.js";
 
 const currentDate = new Date();
 const options = { weekday: 'short' ,month: 'short', day: '2-digit', year: 'numeric' };
@@ -12,36 +12,40 @@ let formattedDate = currentDate.toLocaleDateString('en-US', options);
 formattedDate = formattedDate.replace(/,/g, '');
 const userDataString = sessionStorage.getItem('userData');
 const userData = JSON.parse(userDataString);
-console.log(currentDate);
-// console.log(date);
-console.log(date==formattedDate );
-console.log(formattedDate );
+
+
 async function handleLogin() {
     try {
-        // status=true;
-        console.log(date==formattedDate );
-        if(date==formattedDate){
+        
+        console.log(userRole);
+        if (userRole === "superUser") {
+            console.log(0);
+            console.log("Multiple login's");
+            loginBtn.disabled = true;
+            out.disabled = false;
+            handleInput();
+            document.getElementById("Loginbtn").disabled = true;
+            document.getElementById("Logoutbtn").disabled = false;
+        } else if (date === formattedDate) {
+            console.log(0);
             alert('can log in once in a day');
             document.getElementById("Loginbtn").disabled = true;
             document.getElementById("Logoutbtn").disabled = true;
-        }
-        else{
-        loginBtn.disabled = true;
-        out.disabled = false;
-        handleInput();
-        document.getElementById("Loginbtn").disabled = true;
-        document.getElementById("Logoutbtn").disabled = false;
+        } else {
+            loginBtn.disabled = true;
+            out.disabled = false;
+            handleInput();
+            document.getElementById("Loginbtn").disabled = true;
+            document.getElementById("Logoutbtn").disabled = false;
         }
     } catch (error) {
         console.error('Error during login:', error);
     }
 }
+
 const out = document.getElementById("Logoutbtn");
 const loginBtn = document.getElementById("Loginbtn");
 loginBtn.addEventListener('click', handleLogin);
-
-
-// import {handleInput,collectionRef} from "./log-att.js";
 
 
 const logoutTime = new Date().toLocaleTimeString();
@@ -63,23 +67,7 @@ async function onLogOutButtonClick() {
 
 
 out.addEventListener('click', onLogOutButtonClick);
-function check(){
-    console.log(81);
-if(status){
-    console.log(8955);
-    console.log('11',status);
-    document.getElementById("Loginbtn").disabled = true;
-    document.getElementById("Logoutbtn").disabled = false;
-}else{
-    console.log('00',status);
-    console.log(890);
-    document.getElementById("Loginbtn").disabled = false;
-    document.getElementById("Logoutbtn").disabled =true ;
-}
-}
-// check();
-
-
+// function check(){
 
 
 
@@ -106,3 +94,12 @@ document.getElementById("submitAttendance").addEventListener('click', async () =
         console.error('Error submitting attendance:', error);
     }
 });
+
+if (userRole === "superUser") {
+    // Hide the <div> for regular superusers
+    document.getElementById("stud").style.display = "none";
+} 
+// else {
+//     // Show the <div> for users
+//     document.getElementById("stud").style.display = "none";
+// }

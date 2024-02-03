@@ -6,13 +6,19 @@ import { getUserActivityByEmail } from './dview.js';
 const userDataString = sessionStorage.getItem('userData');
 const userData = JSON.parse(userDataString);
 
+
+
 const Make = document.getElementById('makead');
 Make.addEventListener('click', openForm);
+
 
 function openForm() {
   // Display the form when the button is clicked
   document.getElementById('submissionForm').style.display = 'block';
 }
+
+
+
 
 const sub = document.getElementById('s');
 sub.addEventListener('click', () => submitRole("admin"));
@@ -40,6 +46,7 @@ function submitRole(role) {
   console.log("successfull!");
   makeRole(inputData, role);
 }
+
 
 function makeRole(email, role) {
   try {
@@ -109,6 +116,8 @@ async function vieww() {
         alert('Error fetching data:', error);
     }
 }
+
+
 
 function parseDate(dateString) {
   const parts = dateString.split('-');
