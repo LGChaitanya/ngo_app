@@ -62,7 +62,7 @@ const makeadmin = (email) => {
 
 async function vieww() {
     try {
-      const userQuery = query(collection(database, 'users'),where('email', '==', searchemail.value), orderBy('log_in','desc'));
+      const userQuery = query(collection(database, 'users'),where('email', '==', searchemail.value), orderBy('log_in','desc'),limit(7));
       const userActivity = await getUserActivityByEmail(userQuery);
       if (userActivity.length > 0) {
         // Display the user activity or perform any action with it

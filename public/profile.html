@@ -13,7 +13,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    /* height: 100vh; */
 }
 
 h4 {
@@ -83,22 +83,15 @@ button:hover {
                 <label for="name" class="label">Teacher ID:</label>
                 <input type="text" id="tid" name="name" class="input" required>
             </div>
-            <div>
-                <label for="name" class="label">Username:</label>
-                <input type="text" id="name" name="name" class="input" required>
-            </div>
+            
             <div>
                 <label for="kalikakendra" class="label">Kalika Kendraname:</label>
                 <input type="text" id="kalikakendra" name="kalikakendra" class="input" required>
             </div>
-            <label for="cluster">Choose cluster:</label>
-
-                <select name="cars" id="cluster">
-                <option value="volvo">Volvo</option>
-                <option value="saab">Saab</option>
-                <option value="mercedes">Mercedes</option>
-                <option value="audi">Audi</option>
-                </select>
+            <label for="cluster">Enter cluster:</label>
+            <input type="text" id="cluster" name="cluster" class="input" required>
+            
+                
             <div class="inputBox">
                 <label for="quantity">No of Students:</label>
                 <input type="number"  id="quantity" name="quantity" >

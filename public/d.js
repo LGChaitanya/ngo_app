@@ -5,23 +5,6 @@ import { displayUserActivity } from './table.js';
 
 const userDataString = sessionStorage.getItem('userData');
 const userData = JSON.parse(userDataString);
-// Check if user data exists
-// if (userDataString) {
-   
-//     const uname = document.getElementById('userName');
-
-//         if (userName) {
-//             uname.textContent = 'Welcome, ' + userData.displayName ;
-//         }
-//     // Now you can use userData.displayName, userData.email, etc. in this file
-// } else {
-//     // User data doesn't exist, handle accordingly
-//     console.log('User data not found. Redirecting to login page...');
-//         window.location.href = '404.html';
-// }
-
-
-
 async function Last() {
     try {
       const userQuery = query(collection(database, 'users'), where('email', '==', userData.email),orderBy('log_in','desc'),limit(1));

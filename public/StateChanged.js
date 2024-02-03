@@ -10,7 +10,7 @@ var date=null;
 var D_id=null;
 var record=null;
 
-    onAuthStateChanged(auth, async (user) => {
+  onAuthStateChanged(auth, async (user) => {
         if (user) {
             console.log('1');
             // Fetch user status and details from the database
@@ -28,11 +28,7 @@ var record=null;
                 console.log(3);
                 // Check if the stored date is the same as the current date
                 const currentDate = new Date().toDateString();
-                // console.log(date);
-                // console.log(date.toLocaleDateString());
-                // console.log(currentDate);
-                // console.log(status);
-                // console.log(date == currentDate );
+                
                 if (date == currentDate && status) {
                     console.log(9);
                     status=true;
@@ -56,12 +52,12 @@ var record=null;
               console.log(6);
               // User status document doesn't exist, create it with initial values
               status=false;
-              loginenable()
+              loginenable();
                     // elogin();
             }
           } else {
             console.log(7);
-            loginenable()
+            loginenable();
             // User is signed out
             // Update UI for signed-out state
             
@@ -80,4 +76,4 @@ function logoutenable(){
 
 }
   
-  export {record,status,date,D_id};
+  export {record,status,date,D_id,onAuthStateChanged};
