@@ -1,7 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js";
 import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-auth.js";
 import { auth, provider } from "./firebase_config.js";
-import { collection, getDocs, query, where,orderBy ,limit} from "https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore.js";
+import { collection,doc,getDoc, getDocs, query, where,orderBy ,limit} from "https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore.js";
 import { database } from "./firebase_config.js";
 import {getUserActivityByEmail} from "./dview.js";
 // import { elogin,elogout } from "./log_att.js";
@@ -75,5 +75,27 @@ function logoutenable(){
   document.getElementById("Logoutbtn").disabled = false;
 
 }
+async function knowUser(){
+      const userQuery = doc(database, 'Role', userData.email);
+      console.log(userData.email);
+      const querySnapshot = await getDoc(userQuery);
   
-  export {record,status,date,D_id,onAuthStateChanged};
+      
+      if (querySnapshot.exists()) {
+        const userData1 = querySnapshot.data();
+          var userRole1 = userData1.role;
+          console.log(userRole1);
+          
+    }else{
+          var  userRole1='user';
+    }
+    return userRole1;
+      
+      
+  }
+  const userDataString = sessionStorage.getItem('userData');
+  const userData = JSON.parse(userDataString);
+  const userRole=await knowUser();
+ 
+
+  export {userRole,record,status,date,D_id,onAuthStateChanged};

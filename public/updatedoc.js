@@ -11,8 +11,3 @@ const collectionP=collection(database,'Profile');
     
     alert('Data Updated');
 }
-
-
-const userDataString = sessionStorage.getItem('userData');
-const userData = JSON.parse(userDataString);
-
