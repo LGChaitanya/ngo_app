@@ -67,12 +67,14 @@ var record=null;
 function loginenable(){
   document.getElementById("Loginbtn").disabled = false;
   document.getElementById("Logoutbtn").disabled =true ;
+  document.getElementById("no_of_students").disabled =true ;
 
 }
 
 function logoutenable(){
   document.getElementById("Loginbtn").disabled = true;
   document.getElementById("Logoutbtn").disabled = false;
+  document.getElementById("no_of_students").disabled =false ;
 
 }
 async function knowUser(){

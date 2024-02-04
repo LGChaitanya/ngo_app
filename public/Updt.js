@@ -19,7 +19,7 @@ export async function onViewButtonClick() {
       // Display the user activity or perform any action with it
       const check=record.id;
       const docToUpdate = doc(database, 'users', check);
-      await updateDoc(docToUpdate,  { log_out: logoutTime,	log_out_location:location,status:false });
+      await updateDoc(docToUpdate,  { log_out: logoutTime,	log_out_location:location,status:false,no_of_students: attendanceInput });
       alert('Updated');
     }
     else {
@@ -29,3 +29,5 @@ export async function onViewButtonClick() {
     console.error('Error fetching data:', error);
   }
 }
+
+const attendanceInput = document.getElementById('no_of_students').value;
